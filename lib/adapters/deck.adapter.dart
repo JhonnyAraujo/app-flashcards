@@ -29,10 +29,4 @@ class DeckHiveAdapter implements IDeckAdapter {
   Future<void> save(Deck deck) async {
     await _box.put(deck.id, deck);
   }
-
-  @override
-  Future<void> add(Deck deck) {
-    // TODO: implement add
-    throw UnimplementedError();
-  }
 }
