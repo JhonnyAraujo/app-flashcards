@@ -2,7 +2,7 @@ import 'package:hive_ce/hive.dart';
 
 part 'deck.model.g.dart';
 
-@HiveType(typeId: 1)
+@HiveType(typeId: 0)
 class Deck {
   @HiveField(0)
   final String id;
