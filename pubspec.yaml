@@ -33,6 +33,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   hive_ce: ">=2.19.3 <2.20.0"
   hive_ce_flutter: ">=2.3.4 <2.4.0"
+  mobx: ">=2.6.0 <2.7.0"
 
 dev_dependencies:
   flutter_test:
