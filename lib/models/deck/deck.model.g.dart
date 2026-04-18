@@ -8,7 +8,7 @@ part of 'deck.model.dart';
 
 class DeckAdapter extends TypeAdapter<Deck> {
   @override
-  final typeId = 1;
+  final typeId = 0;
 
   @override
   Deck read(BinaryReader reader) {
