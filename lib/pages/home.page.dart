@@ -1,3 +1,4 @@
+import 'package:app_flashcards/pages/add_deck.page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -40,7 +41,12 @@ class HomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton.extended(
         shape: const StadiumBorder(),
         backgroundColor: Colors.black,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const AddDeck()),
+          );
+        },
         label: const Text("Adicionar", style: TextStyle(color: Colors.white)),
       ),
     );
