@@ -1,4 +1,4 @@
-import 'package:app_flashcards/repositories/deck.repository.dart';
+import 'package:app_flashcards/flash_cards/data/repositories/deck.repository.dart';
 import 'package:mobx/mobx.dart';
 
 part 'home.store.g.dart';

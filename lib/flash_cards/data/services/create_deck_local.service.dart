@@ -1,5 +1,5 @@
-import 'package:app_flashcards/adapters/deck.adapter.dart';
-import 'package:app_flashcards/models/deck/deck.model.dart';
+import 'package:app_flashcards/flash_cards/data/adapters/deck.adapter.dart';
+import 'package:app_flashcards/flash_cards/domain/models/deck/deck.model.dart';
 
 class CreateDeckLocalService {
   final IDeckAdapter _deckAdapter;

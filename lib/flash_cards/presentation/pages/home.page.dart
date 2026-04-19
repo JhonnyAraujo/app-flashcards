@@ -1,4 +1,4 @@
-import 'package:app_flashcards/pages/add_deck.page.dart';
+import 'package:app_flashcards/flash_cards/presentation/pages/add_deck.page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {

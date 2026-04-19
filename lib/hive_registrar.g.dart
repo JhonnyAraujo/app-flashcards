@@ -3,7 +3,7 @@
 // Check in to version control
 
 import 'package:hive_ce/hive_ce.dart';
-import 'package:app_flashcards/models/deck/deck.model.dart';
+import 'package:app_flashcards/flash_cards/domain/models/deck/deck.model.dart';
 
 extension HiveRegistrar on HiveInterface {
   void registerAdapters() {

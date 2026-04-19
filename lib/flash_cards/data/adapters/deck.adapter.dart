@@ -1,4 +1,4 @@
-import 'package:app_flashcards/models/deck/deck.model.dart';
+import 'package:app_flashcards/flash_cards/domain/models/deck/deck.model.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
 
 abstract interface class IDeckAdapter {
