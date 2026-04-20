@@ -1,4 +1,3 @@
-import 'package:app_flashcards/flash_cards/data/repositories/deck.repository.dart';
 import 'package:mobx/mobx.dart';
 
 part 'home.store.g.dart';
@@ -6,23 +5,6 @@ part 'home.store.g.dart';
 class HomeStore = HomeStoreBase with _$HomeStore;
 
 // The store-class
-abstract class HomeStoreBase with Store {
-  final DeckRepository _repository;
+abstract class HomeStoreBase with Store {}
 
-  HomeStoreBase(this._repository);
-
-  @observable
-  String _newDeckName = "";
-  String get newDeckName => _newDeckName;
-
-  @action
-  void setNewDeckName(String value) => _newDeckName = value;
-
-  @action
-  Future<void> createDeck() async {
-    if (_newDeckName.trim().isEmpty) return;
-
-    await _repository.createDeck(_newDeckName.trim());
-    _newDeckName = "";
-  }
-}
+// The store-class
