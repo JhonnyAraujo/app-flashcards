@@ -1,7 +1,30 @@
+import 'package:app_flashcards/flash_cards/presentation/stores/add_deck.store.dart';
 import 'package:flutter/material.dart';
 
-class AddDeck extends StatelessWidget {
-  const AddDeck({super.key});
+class AddDeck extends StatefulWidget {
+  final AddDeckStore deckStore;
+
+  const AddDeck({super.key, required this.deckStore});
+
+  @override
+  State<AddDeck> createState() => _AddDeckState();
+}
+
+class _AddDeckState extends State<AddDeck> {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  late final TextEditingController tituloController;
+
+  @override
+  void initState() {
+    super.initState();
+    tituloController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    tituloController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +42,15 @@ class AddDeck extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 56),
               ),
-              const TextField(
-                decoration: InputDecoration(
-                  focusColor: Colors.black,
-                  label: Text("Título do deck"),
-                  border: OutlineInputBorder(),
+              Form(
+                key: formKey,
+                child: TextField(
+                  controller: tituloController,
+                  decoration: const InputDecoration(
+                    focusColor: Colors.black,
+                    label: Text("Título do deck"),
+                    border: OutlineInputBorder(),
+                  ),
                 ),
               ),
               FilledButton(
@@ -33,7 +60,16 @@ class AddDeck extends StatelessWidget {
                   ),
                   backgroundColor: Colors.black,
                 ),
-                onPressed: () {},
+                onPressed: () async {
+                  widget.deckStore.setNewDeckName(tituloController.text);
+
+                  await widget.deckStore.createDeck();
+
+                  if (!mounted) return;
+
+                  // ignore: use_build_context_synchronously
+                  Navigator.pop(context, true);
+                },
                 child: const Text("Adicionar"),
               ),
             ],
