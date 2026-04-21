@@ -1,7 +1,10 @@
 import 'package:app_flashcards/flash_cards/presentation/pages/home.page.dart';
+import 'package:app_flashcards/injection_container.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initDecksDependencies();
   runApp(const MyApp());
 }
 
