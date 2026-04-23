@@ -7,5 +7,5 @@ class DeckRepository {
   DeckRepository({required CreateDeckLocalService createDeckLocal})
     : _createDeckLocal = createDeckLocal;
 
-  Future<Deck> createDeck(String name) => _createDeckLocal(name);
+  Future<Deck> createDeck(String title) => _createDeckLocal(title);
 }

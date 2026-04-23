@@ -6,8 +6,8 @@ class CreateDeckLocalService {
 
   CreateDeckLocalService(this._deckAdapter);
 
-  Future<Deck> call(String name) async {
-    final deck = Deck(id: DateTime.now().microsecond.toString(), name: name);
+  Future<Deck> call(String title) async {
+    final deck = Deck(id: DateTime.now().microsecond.toString(), title: title);
 
     await _deckAdapter.save(deck);
     return deck;

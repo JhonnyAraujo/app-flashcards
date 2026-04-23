@@ -9,21 +9,21 @@ part of 'add_deck.store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$AddDeckStore on AddDeckStoreBase, Store {
-  late final _$_newDeckNameAtom = Atom(
-    name: 'AddDeckStoreBase._newDeckName',
+  late final _$_newDeckTitleAtom = Atom(
+    name: 'AddDeckStoreBase._newDeckTitle',
     context: context,
   );
 
   @override
-  String get _newDeckName {
-    _$_newDeckNameAtom.reportRead();
-    return super._newDeckName;
+  String get _newDeckTitle {
+    _$_newDeckTitleAtom.reportRead();
+    return super._newDeckTitle;
   }
 
   @override
-  set _newDeckName(String value) {
-    _$_newDeckNameAtom.reportWrite(value, super._newDeckName, () {
-      super._newDeckName = value;
+  set _newDeckTitle(String value) {
+    _$_newDeckTitleAtom.reportWrite(value, super._newDeckTitle, () {
+      super._newDeckTitle = value;
     });
   }
 
@@ -43,12 +43,12 @@ mixin _$AddDeckStore on AddDeckStoreBase, Store {
   );
 
   @override
-  void setNewDeckName(String value) {
+  void setNewDeckTitle(String value) {
     final _$actionInfo = _$AddDeckStoreBaseActionController.startAction(
-      name: 'AddDeckStoreBase.setNewDeckName',
+      name: 'AddDeckStoreBase.setNewDeckTitle',
     );
     try {
-      return super.setNewDeckName(value);
+      return super.setNewDeckTitle(value);
     } finally {
       _$AddDeckStoreBaseActionController.endAction(_$actionInfo);
     }

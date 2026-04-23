@@ -11,17 +11,17 @@ abstract class AddDeckStoreBase with Store {
   AddDeckStoreBase(this._repository);
 
   @observable
-  String _newDeckName = "";
-  String get newDeckName => _newDeckName;
+  String _newDeckTitle = "";
+  String get newDeckTitle => _newDeckTitle;
 
   @action
-  void setNewDeckName(String value) => _newDeckName = value;
+  void setNewDeckTitle(String value) => _newDeckTitle = value;
 
   @action
   Future<void> createDeck() async {
-    if (_newDeckName.trim().isEmpty) return;
+    if (_newDeckTitle.trim().isEmpty) return;
 
-    await _repository.createDeck(_newDeckName.trim());
-    _newDeckName = "";
+    await _repository.createDeck(_newDeckTitle.trim());
+    _newDeckTitle = "";
   }
 }

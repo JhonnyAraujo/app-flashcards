@@ -13,17 +13,17 @@ class AddDeck extends StatefulWidget {
 
 class _AddDeckState extends State<AddDeck> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  late final TextEditingController tituloController;
+  late final TextEditingController titleController;
 
   @override
   void initState() {
     super.initState();
-    tituloController = TextEditingController();
+    titleController = TextEditingController();
   }
 
   @override
   void dispose() {
-    tituloController.dispose();
+    titleController.dispose();
     super.dispose();
   }
 
@@ -46,7 +46,7 @@ class _AddDeckState extends State<AddDeck> {
               Form(
                 key: formKey,
                 child: TextField(
-                  controller: tituloController,
+                  controller: titleController,
                   decoration: const InputDecoration(
                     focusColor: primaryColor,
                     label: Text("Título do deck"),
@@ -62,7 +62,7 @@ class _AddDeckState extends State<AddDeck> {
                   backgroundColor: primaryColor,
                 ),
                 onPressed: () async {
-                  widget.deckStore.setNewDeckName(tituloController.text);
+                  widget.deckStore.setNewDeckTitle(titleController.text);
 
                   await widget.deckStore.createDeck();
 

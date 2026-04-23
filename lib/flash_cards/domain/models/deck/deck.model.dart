@@ -8,10 +8,10 @@ class Deck {
   final String id;
 
   @HiveField(1)
-  final String name;
+  final String title;
 
   @HiveField(2)
   final List? cards;
 
-  Deck({required this.id, required this.name, this.cards});
+  Deck({required this.id, required this.title, this.cards});
 }

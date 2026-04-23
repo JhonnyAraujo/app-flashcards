@@ -18,7 +18,7 @@ class DeckAdapter extends TypeAdapter<Deck> {
     };
     return Deck(
       id: fields[0] as String,
-      name: fields[1] as String,
+      title: fields[1] as String,
       cards: (fields[2] as List?)?.cast<dynamic>(),
     );
   }
@@ -30,7 +30,7 @@ class DeckAdapter extends TypeAdapter<Deck> {
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.name)
+      ..write(obj.title)
       ..writeByte(2)
       ..write(obj.cards);
   }
