@@ -18,7 +18,7 @@ Este projeto foi desenvolvido com as seguintes tecnologias e práticas:
 - **Gerenciamento de Estado:** [Mobx](https://pub.dev/packages/mobx)
 - **Persistência de Dados:** [Hive_CE](https://pub.dev/packages/hive_ce)
 - **Injeção de Dependência:** [Get_It](https://pub.dev/packages/get_it)
-- **Arquitetura:** MVVM + Clean Architecture + Repository Pattern + Service Layer + Adapter pattern
+- **Arquitetura:** MVVM + Clean Architecture + Repository Pattern + Service Layer + Adapter Pattern
 
 ## 📁 Estrutura de Pastas
 

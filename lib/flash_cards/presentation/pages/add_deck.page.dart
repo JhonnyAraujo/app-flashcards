@@ -1,3 +1,4 @@
+import 'package:app_flashcards/core/colors.dart';
 import 'package:app_flashcards/flash_cards/presentation/stores/add_deck.store.dart';
 import 'package:flutter/material.dart';
 
@@ -47,7 +48,7 @@ class _AddDeckState extends State<AddDeck> {
                 child: TextField(
                   controller: tituloController,
                   decoration: const InputDecoration(
-                    focusColor: Colors.black,
+                    focusColor: primaryColor,
                     label: Text("Título do deck"),
                     border: OutlineInputBorder(),
                   ),
@@ -58,7 +59,7 @@ class _AddDeckState extends State<AddDeck> {
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(4)),
                   ),
-                  backgroundColor: Colors.black,
+                  backgroundColor: primaryColor,
                 ),
                 onPressed: () async {
                   widget.deckStore.setNewDeckName(tituloController.text);

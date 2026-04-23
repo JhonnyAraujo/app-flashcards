@@ -1,3 +1,4 @@
+import 'package:app_flashcards/core/colors.dart';
 import 'package:app_flashcards/flash_cards/presentation/pages/home.page.dart';
 import 'package:app_flashcards/injection_container.dart';
 import 'package:flutter/material.dart';
@@ -14,10 +15,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'FlashCards',
-      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: const HomePage(),
-    );
+    return const MaterialApp(title: 'FlashCards', home: HomePage());
   }
 }

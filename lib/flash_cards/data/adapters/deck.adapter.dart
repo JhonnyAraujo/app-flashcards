@@ -12,7 +12,7 @@ class DeckHiveAdapter implements IDeckAdapter {
 
   @override
   Future<void> init() async {
-    Hive.initFlutter();
+    await Hive.initFlutter();
 
     if (!Hive.isAdapterRegistered(0)) {
       Hive.registerAdapter(DeckAdapter());

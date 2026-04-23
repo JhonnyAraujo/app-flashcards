@@ -1,3 +1,4 @@
+import 'package:app_flashcards/core/colors.dart';
 import 'package:app_flashcards/flash_cards/presentation/pages/add_deck.page.dart';
 import 'package:app_flashcards/flash_cards/presentation/stores/add_deck.store.dart';
 import 'package:app_flashcards/injection_container.dart';
@@ -10,7 +11,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: primaryColor,
         title: const Text("Decks", style: TextStyle(color: Colors.white)),
         centerTitle: true,
       ),
@@ -42,7 +43,7 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         shape: const StadiumBorder(),
-        backgroundColor: Colors.black,
+        backgroundColor: primaryColor,
         onPressed: () async {
           final bool? result = await Navigator.push(
             context,
