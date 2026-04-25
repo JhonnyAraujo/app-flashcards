@@ -3,6 +3,7 @@ import 'package:hive_ce_flutter/hive_flutter.dart';
 
 abstract interface class IDeckAdapter {
   Future<void> init();
+  Future<List<Deck>> getAll();
   Future<void> save(Deck deck);
 }
 
@@ -28,5 +29,10 @@ class DeckHiveAdapter implements IDeckAdapter {
   @override
   Future<void> save(Deck deck) async {
     await _box.put(deck.id, deck);
+  }
+
+  @override
+  Future<List<Deck>> getAll() async {
+    return _box.values.toList();
   }
 }
