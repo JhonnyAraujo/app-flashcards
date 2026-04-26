@@ -24,6 +24,7 @@ abstract class HomeStoreBase with Store {
     _isLoading = true;
 
     final result = await _repository.getAll();
+    _decks.clear();
     _decks.addAll(result);
 
     _isLoading = false;
