@@ -1,7 +1,9 @@
 import 'package:app_flashcards/core/colors.dart';
+import 'package:app_flashcards/flash_cards/domain/models/deck/deck.model.dart';
 import 'package:app_flashcards/flash_cards/presentation/pages/add_deck.page.dart';
 import 'package:app_flashcards/flash_cards/presentation/stores/add_deck.store.dart';
 import 'package:app_flashcards/flash_cards/presentation/stores/home.store.dart';
+import 'package:app_flashcards/flash_cards/presentation/widgets/deck_list_item.widget.dart';
 import 'package:app_flashcards/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -27,20 +29,8 @@ class HomePage extends StatelessWidget {
             return ListView.builder(
               itemCount: store.decks.length,
               itemBuilder: (context, index) {
-                final deck = store.decks[index];
-                return ListTile(
-                  contentPadding: const EdgeInsets.symmetric(vertical: 20),
-                  title: Text(
-                    deck.title,
-                    style: const TextStyle(fontSize: 28),
-                    textAlign: TextAlign.center,
-                  ),
-                  subtitle: Text(
-                    "${deck.cards?.length ?? '0'} cartões",
-                    textAlign: TextAlign.center,
-                  ),
-                  shape: const Border(bottom: BorderSide()),
-                );
+                final Deck deck = store.decks[index];
+                return DeckListItem(deck: deck);
               },
             );
           },
