@@ -37,6 +37,16 @@ mixin _$HomeStore on HomeStoreBase, Store {
     return _$loadDecksAsyncAction.run(() => super.loadDecks());
   }
 
+  late final _$deleteDeckAsyncAction = AsyncAction(
+    'HomeStoreBase.deleteDeck',
+    context: context,
+  );
+
+  @override
+  Future<void> deleteDeck(String id) {
+    return _$deleteDeckAsyncAction.run(() => super.deleteDeck(id));
+  }
+
   @override
   String toString() {
     return '''

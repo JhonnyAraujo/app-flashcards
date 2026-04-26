@@ -29,6 +29,12 @@ abstract class HomeStoreBase with Store {
 
     _isLoading = false;
   }
+
+  @action
+  Future<void> deleteDeck(String id) async {
+    await _repository.deleteDeck(id);
+    loadDecks();
+  }
 }
 
 // The store-class

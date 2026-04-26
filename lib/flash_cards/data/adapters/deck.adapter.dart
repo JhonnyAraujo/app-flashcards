@@ -5,6 +5,7 @@ abstract interface class IDeckAdapter {
   Future<void> init();
   Future<List<Deck>> getAll();
   Future<void> save(Deck deck);
+  Future<void> delete(String id);
 }
 
 class DeckHiveAdapter implements IDeckAdapter {
@@ -34,5 +35,10 @@ class DeckHiveAdapter implements IDeckAdapter {
   @override
   Future<List<Deck>> getAll() async {
     return _box.values.toList();
+  }
+
+  @override
+  Future<void> delete(String id) async {
+    await _box.delete(id);
   }
 }
