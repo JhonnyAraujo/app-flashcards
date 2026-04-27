@@ -30,7 +30,12 @@ class HomePage extends StatelessWidget {
               itemCount: store.decks.length,
               itemBuilder: (context, index) {
                 final Deck deck = store.decks[index];
-                return DeckListItem(deck: deck);
+                return DeckListItem(
+                  deck: deck,
+                  onLongPress: () async {
+                    await store.deleteDeck(deck.id);
+                  },
+                );
               },
             );
           },
