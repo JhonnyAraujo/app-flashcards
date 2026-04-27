@@ -1,3 +1,4 @@
+import 'package:app_flashcards/flash_cards/domain/models/deck/flash_card.model.dart';
 import 'package:hive_ce/hive.dart';
 
 part 'deck.model.g.dart';
@@ -11,7 +12,7 @@ class Deck {
   final String title;
 
   @HiveField(2)
-  final List? cards;
+  final List<FlashCard>? flashCards;
 
-  Deck({required this.id, required this.title, this.cards});
+  Deck({required this.id, required this.title, this.flashCards});
 }

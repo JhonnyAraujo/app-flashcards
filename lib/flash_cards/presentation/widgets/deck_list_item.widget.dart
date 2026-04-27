@@ -21,7 +21,7 @@ class DeckListItem extends StatelessWidget {
         textAlign: TextAlign.center,
       ),
       subtitle: Text(
-        "${deck.cards?.length ?? '0'} cartões",
+        "${deck.flashCards?.length ?? '0'} cartões",
         textAlign: TextAlign.center,
       ),
       onLongPress: onLongPress,

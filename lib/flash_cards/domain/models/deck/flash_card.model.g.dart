@@ -1,38 +1,38 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'deck.model.dart';
+part of 'flash_card.model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class DeckAdapter extends TypeAdapter<Deck> {
+class FlashCardAdapter extends TypeAdapter<FlashCard> {
   @override
-  final typeId = 0;
+  final typeId = 1;
 
   @override
-  Deck read(BinaryReader reader) {
+  FlashCard read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Deck(
+    return FlashCard(
       id: fields[0] as String,
-      title: fields[1] as String,
-      flashCards: (fields[2] as List?)?.cast<FlashCard>(),
+      ask: fields[1] as String,
+      ans: fields[2] as String,
     );
   }
 
   @override
-  void write(BinaryWriter writer, Deck obj) {
+  void write(BinaryWriter writer, FlashCard obj) {
     writer
       ..writeByte(3)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.title)
+      ..write(obj.ask)
       ..writeByte(2)
-      ..write(obj.flashCards);
+      ..write(obj.ans);
   }
 
   @override
@@ -41,7 +41,7 @@ class DeckAdapter extends TypeAdapter<Deck> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is DeckAdapter &&
+      other is FlashCardAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

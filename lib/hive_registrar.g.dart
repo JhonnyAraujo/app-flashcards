@@ -4,15 +4,18 @@
 
 import 'package:hive_ce/hive_ce.dart';
 import 'package:app_flashcards/flash_cards/domain/models/deck/deck.model.dart';
+import 'package:app_flashcards/flash_cards/domain/models/deck/flash_card.model.dart';
 
 extension HiveRegistrar on HiveInterface {
   void registerAdapters() {
     registerAdapter(DeckAdapter());
+    registerAdapter(FlashCardAdapter());
   }
 }
 
 extension IsolatedHiveRegistrar on IsolatedHiveInterface {
   void registerAdapters() {
     registerAdapter(DeckAdapter());
+    registerAdapter(FlashCardAdapter());
   }
 }
