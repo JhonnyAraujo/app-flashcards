@@ -1,0 +1,46 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'add_flashcard.store.dart';
+
+// **************************************************************************
+// StoreGenerator
+// **************************************************************************
+
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
+
+mixin _$AddFlashcardStore on AddFlashcardStoreBase, Store {
+  late final _$currentDeckAtom = Atom(
+    name: 'AddFlashcardStoreBase.currentDeck',
+    context: context,
+  );
+
+  @override
+  Deck get currentDeck {
+    _$currentDeckAtom.reportRead();
+    return super.currentDeck;
+  }
+
+  @override
+  set currentDeck(Deck value) {
+    _$currentDeckAtom.reportWrite(value, super.currentDeck, () {
+      super.currentDeck = value;
+    });
+  }
+
+  late final _$addFlashcardAsyncAction = AsyncAction(
+    'AddFlashcardStoreBase.addFlashcard',
+    context: context,
+  );
+
+  @override
+  Future<void> addFlashcard(String ask, String ans) {
+    return _$addFlashcardAsyncAction.run(() => super.addFlashcard(ask, ans));
+  }
+
+  @override
+  String toString() {
+    return '''
+currentDeck: ${currentDeck}
+    ''';
+  }
+}
