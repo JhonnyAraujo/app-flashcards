@@ -10,10 +10,8 @@ abstract class AddFlashcardStoreBase with Store {
   final DeckRepository _repository;
 
   AddFlashcardStoreBase(this._repository, this.currentDeck);
- 
-  @observable
-  Deck currentDeck;
 
+  final Deck currentDeck;
 
   @action
   Future<void> addFlashcard(String ask, String ans) async {
