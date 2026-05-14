@@ -3,6 +3,7 @@ import 'package:app_flashcards/flash_cards/domain/models/deck/deck.model.dart';
 import 'package:app_flashcards/flash_cards/presentation/pages/add_deck.page.dart';
 import 'package:app_flashcards/flash_cards/presentation/stores/add_deck.store.dart';
 import 'package:app_flashcards/flash_cards/presentation/stores/home.store.dart';
+import 'package:app_flashcards/flash_cards/presentation/pages/deck_detail.page.dart';
 import 'package:app_flashcards/flash_cards/presentation/widgets/deck_list_item.widget.dart';
 import 'package:app_flashcards/injection_container.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,15 @@ class HomePage extends StatelessWidget {
                 final Deck deck = store.decks[index];
                 return DeckListItem(
                   deck: deck,
+                  onTap: () async {
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => DeckDetail(deck: deck),
+                      ),
+                    );
+                    store.loadDecks();
+                  },
                   onLongPress: () async {
                     await store.deleteDeck(deck.id);
                   },

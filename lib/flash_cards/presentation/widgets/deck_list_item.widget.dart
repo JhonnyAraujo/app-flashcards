@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 class DeckListItem extends StatelessWidget {
   final Deck deck;
   final VoidCallback onLongPress;
+  final VoidCallback onTap;
 
   const DeckListItem({
     super.key,
     required this.deck,
     required this.onLongPress,
+    required this.onTap,
   });
 
   @override
@@ -24,6 +26,7 @@ class DeckListItem extends StatelessWidget {
         "${deck.flashCards?.length ?? '0'} cartões",
         textAlign: TextAlign.center,
       ),
+      onTap: onTap,
       onLongPress: onLongPress,
       splashColor: Colors.red,
       shape: const Border(bottom: BorderSide()),

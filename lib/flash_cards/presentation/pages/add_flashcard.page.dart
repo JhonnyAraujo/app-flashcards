@@ -13,13 +13,16 @@ class AddFlashcard extends StatefulWidget {
 }
 
 class _AddFlashcardState extends State<AddFlashcard> {
-  late final AddFlashcardStore store = AddFlashcardStore(getIt(), widget.deck);
+  late final AddFlashcardStore store = AddFlashcardStore(
+    repository: getIt(),
+    currentDeck: widget.deck,
+  );
 
   final TextEditingController questionController = TextEditingController();
   final TextEditingController answerController = TextEditingController();
 
-  void addFlashcard() {
-    store.addFlashcard(questionController.text, answerController.text);
+  void addFlashcard() async {
+    await store.addFlashcard(questionController.text, answerController.text);
     questionController.clear();
     answerController.clear();
   }

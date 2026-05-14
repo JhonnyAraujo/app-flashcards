@@ -7,14 +7,13 @@ part 'add_flashcard.store.g.dart';
 class AddFlashcardStore = AddFlashcardStoreBase with _$AddFlashcardStore;
 
 abstract class AddFlashcardStoreBase with Store {
-  final DeckRepository _repository;
-
-  AddFlashcardStoreBase(this._repository, this.currentDeck);
-
+  final DeckRepository repository;
   final Deck currentDeck;
+
+  AddFlashcardStoreBase({required this.repository, required this.currentDeck});
 
   @action
   Future<void> addFlashcard(String ask, String ans) async {
-    await _repository.addFlashCard(currentDeck.id, ask, ans);
+    await repository.addFlashCard(currentDeck.id, ask, ans);
   }
 }
