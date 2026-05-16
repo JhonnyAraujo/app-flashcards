@@ -1,5 +1,6 @@
 import 'package:app_flashcards/flash_cards/domain/models/deck/deck.model.dart';
 import 'package:app_flashcards/flash_cards/presentation/pages/add_flashcard.page.dart';
+import 'package:app_flashcards/flash_cards/presentation/pages/quiz.page.dart';
 import 'package:app_flashcards/flash_cards/presentation/stores/deck_detail.store.dart';
 import 'package:app_flashcards/injection_container.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +44,17 @@ class _DeckDetailState extends State<DeckDetail> {
                 },
                 child: const Text('Add Cartão'),
               ),
-              FilledButton(onPressed: () {}, child: const Text('Iniciar Quiz')),
+              FilledButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => QuizPage(deck: widget.deck),
+                    ),
+                  );
+                },
+                child: const Text('Iniciar Quiz'),
+              ),
             ],
           ),
         ),
