@@ -1,3 +1,4 @@
+import 'package:app_flashcards/core/colors.dart';
 import 'package:app_flashcards/flash_cards/domain/models/deck/deck.model.dart';
 import 'package:app_flashcards/flash_cards/presentation/pages/add_flashcard.page.dart';
 import 'package:app_flashcards/flash_cards/presentation/pages/quiz.page.dart';
@@ -20,40 +21,74 @@ class _DeckDetailState extends State<DeckDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.deck.title), centerTitle: true),
+      appBar: AppBar(
+        leading: BackButton(
+          key: const Key("btnvoltar"),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        foregroundColor: Colors.white,
+        backgroundColor: primaryColor,
+        title: Text(widget.deck.title),
+        centerTitle: true,
+      ),
       body: SafeArea(
         child: Center(
           child: Column(
-            spacing: 20,
+            spacing: 15,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(widget.deck.title),
+              Text(widget.deck.title, style: const TextStyle(fontSize: 60)),
               Observer(
-                builder: (_) => Text('${store.flashcardsCount} cartões'),
+                builder: (_) => Text(
+                  '${store.flashcardsCount} cartões',
+                  style: const TextStyle(fontSize: 28),
+                ),
               ),
               const SizedBox(height: 100),
               OutlinedButton(
+                key: const Key("addCard"),
+                style: OutlinedButton.styleFrom(
+                  fixedSize: const Size(250, 60),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                ),
                 onPressed: () async {
                   await Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AddFlashcard(deck: widget.deck),
+                      builder: (context) =>
+                          AddFlashcard(deck: store.currentDeck),
                     ),
                   );
                   store.reloadDeck();
                 },
-                child: const Text('Add Cartão'),
+                child: const Text(
+                  'Add Cartão',
+                  style: TextStyle(color: Colors.black, fontSize: 20),
+                ),
               ),
               FilledButton(
+                key: const Key("startQuiz"),
+                style: FilledButton.styleFrom(
+                  backgroundColor: primaryColor,
+                  fixedSize: const Size(250, 60),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                ),
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => QuizPage(deck: widget.deck),
+                      builder: (context) => QuizPage(deck: store.currentDeck),
                     ),
                   );
                 },
-                child: const Text('Iniciar Quiz'),
+                child: const Text(
+                  'Iniciar Quiz',
+                  style: TextStyle(fontSize: 20),
+                ),
               ),
             ],
           ),

@@ -68,30 +68,60 @@ mixin _$QuizStore on QuizStoreBase, Store {
     });
   }
 
+  late final _$correctAnswersAtom = Atom(
+    name: 'QuizStoreBase.correctAnswers',
+    context: context,
+  );
+
+  @override
+  int get correctAnswers {
+    _$correctAnswersAtom.reportRead();
+    return super.correctAnswers;
+  }
+
+  @override
+  set correctAnswers(int value) {
+    _$correctAnswersAtom.reportWrite(value, super.correctAnswers, () {
+      super.correctAnswers = value;
+    });
+  }
+
   late final _$QuizStoreBaseActionController = ActionController(
     name: 'QuizStoreBase',
     context: context,
   );
 
   @override
-  void revealAnswer() {
+  void toggleAnswer() {
     final _$actionInfo = _$QuizStoreBaseActionController.startAction(
-      name: 'QuizStoreBase.revealAnswer',
+      name: 'QuizStoreBase.toggleAnswer',
     );
     try {
-      return super.revealAnswer();
+      return super.toggleAnswer();
     } finally {
       _$QuizStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void nextCard() {
+  void markCorrect() {
     final _$actionInfo = _$QuizStoreBaseActionController.startAction(
-      name: 'QuizStoreBase.nextCard',
+      name: 'QuizStoreBase.markCorrect',
     );
     try {
-      return super.nextCard();
+      return super.markCorrect();
+    } finally {
+      _$QuizStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void markIncorrect() {
+    final _$actionInfo = _$QuizStoreBaseActionController.startAction(
+      name: 'QuizStoreBase.markIncorrect',
+    );
+    try {
+      return super.markIncorrect();
     } finally {
       _$QuizStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -102,6 +132,7 @@ mixin _$QuizStore on QuizStoreBase, Store {
     return '''
 currentIndex: ${currentIndex},
 showAnswer: ${showAnswer},
+correctAnswers: ${correctAnswers},
 flashcards: ${flashcards},
 currentCard: ${currentCard},
 isFinished: ${isFinished}

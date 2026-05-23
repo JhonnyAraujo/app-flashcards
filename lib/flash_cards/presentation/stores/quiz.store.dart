@@ -17,6 +17,9 @@ abstract class QuizStoreBase with Store {
   @observable
   bool showAnswer = false;
 
+  @observable
+  int correctAnswers = 0;
+
   @computed
   List<FlashCard> get flashcards => deck.flashCards ?? [];
 
@@ -27,12 +30,22 @@ abstract class QuizStoreBase with Store {
   bool get isFinished => flashcards.isEmpty || currentIndex >= flashcards.length;
 
   @action
-  void revealAnswer() {
-    showAnswer = true;
+  void toggleAnswer() {
+    showAnswer = !showAnswer;
   }
 
   @action
-  void nextCard() {
+  void markCorrect() {
+    correctAnswers++;
+    _goToNext();
+  }
+
+  @action
+  void markIncorrect() {
+    _goToNext();
+  }
+
+  void _goToNext() {
     currentIndex++;
     showAnswer = false;
   }

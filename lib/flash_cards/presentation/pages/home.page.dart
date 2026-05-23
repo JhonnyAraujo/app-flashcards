@@ -27,31 +27,58 @@ class HomePage extends StatelessWidget {
       body: SafeArea(
         child: Observer(
           builder: (context) {
-            return ListView.builder(
-              itemCount: store.decks.length,
-              itemBuilder: (context, index) {
-                final Deck deck = store.decks[index];
-                return DeckListItem(
-                  deck: deck,
-                  onTap: () async {
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => DeckDetail(deck: deck),
+            return store.isLoading
+                ? const Center(child: CircularProgressIndicator())
+                : store.decks.isEmpty
+                ? Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Image(
+                            key: Key("image"),
+                            image: AssetImage('assets/images/no_decks.png'),
+                            width: 350,
+                          ),
+                          
+                          OutlinedButton( key: const Key("btnOutlineAdicionar"), style: OutlinedButton.styleFrom(minimumSize: const Size(double.infinity, 50), side: const BorderSide(color: Colors.black12), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4))), onPressed: () async {final bool? result = await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => AddDeck(deckStore: AddDeckStore(getIt())),
+                            ),
+                          );
+                          if (result == true) store.loadDecks();}, child: const Text('Adiciona deck', style: TextStyle(color: primaryColor)))
+                        ],
                       ),
-                    );
-                    store.loadDecks();
-                  },
-                  onLongPress: () async {
-                    await store.deleteDeck(deck.id);
-                  },
-                );
-              },
-            );
+                    ),
+                )
+                : ListView.builder(
+                    itemCount: store.decks.length,
+                    itemBuilder: (context, index) {
+                      final Deck deck = store.decks[index];
+                      return DeckListItem(
+                        deck: deck,
+                        onTap: () async {
+                          await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => DeckDetail(deck: deck),
+                            ),
+                          );
+                          store.loadDecks();
+                        },
+                        onLongPress: () async {
+                          await store.deleteDeck(deck.id);
+                        },
+                      );
+                    },
+                  );
           },
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
+        key: const Key("btnAdicionar"),
         shape: const StadiumBorder(),
         backgroundColor: primaryColor,
         onPressed: () async {

@@ -45,16 +45,24 @@ class _AddDeckState extends State<AddDeck> {
               ),
               Form(
                 key: formKey,
-                child: TextField(
+                child: TextFormField(
+                  key: const Key("tituloDeck"),
                   controller: titleController,
                   decoration: const InputDecoration(
                     focusColor: primaryColor,
                     label: Text("Título do deck"),
                     border: OutlineInputBorder(),
                   ),
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return 'Campo obrigatório';
+                    }
+                    return null;
+                  },
                 ),
               ),
               FilledButton(
+                key: const Key("btnAdicionarDeck"),
                 style: FilledButton.styleFrom(
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(4)),
@@ -62,14 +70,15 @@ class _AddDeckState extends State<AddDeck> {
                   backgroundColor: primaryColor,
                 ),
                 onPressed: () async {
-                  widget.deckStore.setNewDeckTitle(titleController.text);
+                  if (formKey.currentState?.validate() == true) {
+                    widget.deckStore.setNewDeckTitle(titleController.text);
 
-                  await widget.deckStore.createDeck();
+                    await widget.deckStore.createDeck();
 
-                  if (!mounted) return;
+                    if (!mounted) return;
 
-                  // ignore: use_build_context_synchronously
-                  Navigator.pop(context, true);
+                    Navigator.pop(context, true);
+                  }
                 },
                 child: const Text("Adicionar"),
               ),

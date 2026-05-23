@@ -1,3 +1,4 @@
+import 'package:app_flashcards/core/colors.dart';
 import 'package:app_flashcards/flash_cards/domain/models/deck/deck.model.dart';
 import 'package:app_flashcards/flash_cards/presentation/stores/add_flashcard.store.dart';
 import 'package:app_flashcards/injection_container.dart';
@@ -18,13 +19,16 @@ class _AddFlashcardState extends State<AddFlashcard> {
     currentDeck: widget.deck,
   );
 
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController questionController = TextEditingController();
   final TextEditingController answerController = TextEditingController();
 
   void addFlashcard() async {
-    await store.addFlashcard(questionController.text, answerController.text);
-    questionController.clear();
-    answerController.clear();
+    if (formKey.currentState?.validate() == true) {
+      await store.addFlashcard(questionController.text, answerController.text);
+      questionController.clear();
+      answerController.clear();
+    }
   }
 
   @override
@@ -41,31 +45,59 @@ class _AddFlashcardState extends State<AddFlashcard> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
-          child: Column(
-            spacing: 60,
-            children: [
-              TextField(
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  label: Text('Pergunta'),
+          child: Form(
+            key: formKey,
+            child: Column(
+              spacing: 60,
+              children: [
+                TextFormField(
+                  key: const Key("inputPergunta"),
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    label: Text('Pergunta'),
+                  ),
+                  controller: questionController,
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return 'Campo obrigatório';
+                    }
+                    return null;
+                  },
                 ),
-                controller: questionController,
-              ),
-              TextField(
-                maxLines: null,
-                minLines: 3,
-                keyboardType: TextInputType.multiline,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  label: Text('Resposta'),
+                TextFormField(
+                  key: const Key("inputResposta"),
+                  maxLines: null,
+                  minLines: 3,
+                  keyboardType: TextInputType.multiline,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    label: Text('Resposta'),
+                  ),
+                  controller: answerController,
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return 'Campo obrigatório';
+                    }
+                    return null;
+                  },
                 ),
-                controller: answerController,
-              ),
-              FilledButton(
-                onPressed: addFlashcard,
-                child: const Text('Adicionar'),
-              ),
-            ],
+                FilledButton(
+                  key: const Key("addCardQuestion"),
+                  style: FilledButton.styleFrom(
+                    backgroundColor: primaryColor,
+                    fixedSize: const Size(200, 60),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                  ),
+                  onPressed: addFlashcard,
+                  child: const Text(
+                    'Adicionar',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
